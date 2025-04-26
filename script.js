@@ -1,41 +1,34 @@
-// Simulerad blockering av tråden
-setInterval(() => {
-  let start = Date.now()
-  while (Date.now() - start < 1000) {}
-}, 3000)
+document.addEventListener("DOMContentLoaded", function () {
+  const articleList = document.querySelector("#article-list");
+  const allArticles = document.querySelectorAll("main.articles > article");
+  const fishButton = document.querySelector('button[data-article="fish"]');
 
-// Skriver ut HTML direkt i dokumentet
-document.write("<h1 style='color:black;'>HELLO FROM DOCUMENT.WRITE()</h1>")
-document.write("<p>Another document.write() call</p>")
+  // Visa "fish" som standard
+  document.querySelector("#fish").style.display = "block";
+  fishButton.style.display = "none"; // Dölj "fish"-knappen i sidopanelen
 
-// Förhindrar användaren att navigera bakåt
-history.pushState(null, "", location.href)
-window.onpopstate = () => history.go(1)
+  articleList.addEventListener("click", function (event) {
+    const button = event.target.closest("button");
+    if (!button) return;
 
-// Ändrar bakgrundsfärgen slumpmässigt var 500ms
-setInterval(() => {
-  document.body.style.backgroundColor =
-    "#" + Math.floor(Math.random() * 16777215).toString(16)
-}, 500)
+    const articleKey = button.getAttribute("data-article");
+    if (!articleKey) return;
 
-// Visar innehållet på sidan efter 5 sekunder
-setTimeout(() => {
-  document.body.style.display = "block"
-}, 5000)
+    // Dölj alla artiklar
+    allArticles.forEach(article => {
+      article.style.display = "none";
+    });
 
-// Loggar 10000 tal till konsolen efter 1 sekund
-setTimeout(() => {
-  for (let i = 0; i < 10000; i++) {
-    console.log(i)
-  }
-}, 1000)
+    // Visa den valda artikeln
+    const targetArticle = document.querySelector(`main.articles #${articleKey}`);
+    if (targetArticle) {
+      targetArticle.style.display = "block";
+    }
 
-// // Visar en alert när sidan har laddats
-// document.addEventListener("DOMContentLoaded", function () {
-//   alert("Page loaded!")
-// })
-
-// Loggar 100 000 siffror direkt när sidan laddas
-for (let i = 0; i < 100000; i++) {
-  console.log(i)
-}
+    // Hantera sidopanelens knappar
+    document.querySelectorAll(".article-button").forEach(btn => {
+      btn.style.display = "block"; // Visa alla knappar
+    });
+    button.style.display = "none"; // Dölj den klickade knappen
+  });
+});

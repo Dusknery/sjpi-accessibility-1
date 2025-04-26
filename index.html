@@ -27,95 +27,95 @@ Det finns många sätt att göra en webbplats mer tillgänglig, till exempel att
 -->
 
 <!DOCTYPE html>
-<!-- Vad händer när man kommenterar bort språket? -->
-<!-- <html lang="en"> -->
+<!-- Vad händer när man kommenterar bort språket? tas lang bort vet inte sökmotorn eller skärmläsare vilket språk hemsidan är på.-->
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <!-- Endast en `<title>` används; flera kan orsaka oväntat beteende och påverka SEO samt tillgänglighet negativt. -->
+    <!-- Endast en `<title>` används; flera kan orsaka oväntat beteende och påverka SEO samt tillgänglighet negativt. då sökmotaorn och skärmläsare blir förvirrade och vet inte vilken titel som sidan har. -->
     <title>A11y News</title>
-    <title>A11y News dupe</title>
 </head>
 
 <body>
-    <!-- Navigeringsmeny med dubblett-ID:n, inkonsekvent tabindex, och brutna länkar till en 404-sida. -->
-    <nav class="navigation">
-        <span class="nav-item" id="1" tabindex="-1"><a href="404.html" target="_blank">Home</a></span>
-        <span class="nav-item" id="1" tabindex="-1"><a href="404.html">World</a></span>
-        <span class="nav-item" id="1"><a href="404.html">Sports</a></span>
-        <span class="nav-item" id="1"><a href="404.html" target="_blank">Entertainment</a></span>
-    </nav>
+    <header>
+        <nav class="navigation" aria-label="Main navigation">
+            <div class="Website-name" id="website-name">A11y News</div>
 
-    <!-- Svåråtkomligt inputfällt -->
-    <div class="input-container">
-        <input type="text" placeholder="Enter text">
-        <button><a href="#">Search</a></button>
-    </div>
-
-    <!-- Dold text och klickbar div. 
-     .hidden-text är nästan osynlig p.g.a. låg opacity och roterad tex -->
-    <p class="hidden-text">This text is invisible.</p>
-    <div class="button">Click here!</div>
-    <div class="container">
-
-        <!-- Två <h1>-taggar i .container kan påverka tillgänglighet och SEO. -->
-        <h1>A11y News</h1>
-        <h1></h1>
-
-        <div class="article">
-            <!-- <marquee>(rullande text) kan vara en intressant effekt på en hemsida, men det kan också vara distraherande för besökarna. -->
-            <marquee class="headline">Breaking News: ...!</marquee>
-            <p>Scientists have discovered a new deep-sea fish with bioluminescent fins off the coast of Australia. The
-                unnamed species is believed to have unique traits that could contribute to future medical research and
-                biotechnology.</p>
-            <a href="404.html">Click here!</a>
-        </div>
-
-        <!-- Klicka på artikeln för att visa ett meddelande, men den utför egentligen inget. -->
-        <div class="article" onclick="alert('This does nothing!')">
-            <div>Lunar New Year: Celebrate with us!</div>
-
-            <!-- Bilder visas inte, varför? -->
-            <div class="image-container">
-                <img src="/images/ocean.jpg">
-                <img src="/images/city.jpg">
-                <img src="/images/family.jpg">
+            <div class="input-container">
+                <input type="text" id="search-input" placeholder="Search...">
+                <button id="search-button" aria-label="Search">
+                    <img src="images/search.png" alt="Search icon">
+                </button>
             </div>
 
-            <p>Access the news by pressing the images</p>
-        </div>
+            <span class="nav-item-Home" id="home-nav" tabindex="1"><a href="#home" target="_blank">Home</a></span>
+            <span class="nav-item-World" id="world-nav" tabindex="2"><a href="#world" target="_blank">World</a></span>
+            <span class="nav-item-Sports" id="sports-nav" tabindex="3"><a href="#Sports"target="_blank">Sports</a></span>
+            <span class="nav-item-Entertainment" id="Entertainment-nav" tabindex="4"><a href="#Entertainment" target="_blank">Entertainment</a></span>
+        </nav>
+    </header>
+    
+    <aside class="sidebar" aria-label="Articles List">
+        <ul id="article-list">
+          <li>
+            <button data-article="fish" class="article-button">
+              <div class="article-container">
+                <h3 class="title">Newly Discovered Deep-Sea Fish May Revolutionize Medical Research</h3>
+                <img class="thumbnail" src="images/giphy 1.png" alt="Deep-sea fish">
+              </div>
+            </button>
+          </li>
+          <li>
+            <button data-article="lunar" class="article-button">
+              <div class="article-container">
+                <h3 class="title">Lunar New Year: Celebrate with us!</h3>
+                <img class="thumbnail" src="images/image 3.png" alt="Lunar New Year celebration">
+              </div>
+            </button>
+          </li>
+          <li>
+            <button data-article="movie" class="article-button">
+              <div class="article-container">
+                <h3 class="title">New Family Adventure "Påskharen" Hops Into Theaters This Spring</h3>
+                <img class="thumbnail" src="images/image.png" alt="Easter Bunny Adventure">
+              </div>
+            </button>
+          </li>
+        </ul>
+      </aside>
+      
 
-        <!-- Allt för stor bild. För att motverka prestanda problem, ha koll på storleken på bilden -->
-        <div class="article" style="display: none;">
-            <p class="headline">Se en 50MB bild ladda långsamt!</p>
-            <img src="http://upload.wikimedia.org/wikipedia/commons/3/3f/JPEG_example_flower.jpg" width="50000">
-        </div>
-
-        <!-- Videor kräver mycket prestanda, kan vi ändra eller ta bort för att åstakomma bättre resultat -->
-        <div class="article">
-            <video autoplay muted loop src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
-            <img src="http://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif">
-        </div>
-    </div>
-
-    <!-- En irriterande annons som alltid syns och innehåller en snurrande bild samt en vilseledande text -->
-    <div id="fake-ad">
-        <div class="top-section">
+    <main class="articles">
+        <article id="fish">
+            <h2>Newly Discovered Deep-Sea Fish May Revolutionize Medical Research</h2>
             <div class="image-container">
-                <img class="rotating-image" src="images/chest.png">
+                <img src="images\giphy 1.png">
+                <p>Scientists have discovered a new deep-sea fish with bioluminescent fins off the coast of Australia.
+                    The
+                    unnamed species is believed to have unique traits that could contribute to future medical research
+                    and
+                    biotechnology.</p>
             </div>
-            <p>🎉 You have won $10,000! 🎉</p>
-            <div class="image-container">
-                <img class="rotating-image" src="images/chest.png">
-            </div>
-        </div>
-        <p class="btext">Click here to collect your money!</p>
-    </div>
+        </article>
 
+        <article id="lunar">
+            <h2>Lunar New Year: Celebrate with us!</h2>
+            <div class="image-container">
+                <img src="images\image 3.png">
+                <p>Lunar New Year is the beginning of a new year based on lunar calendars or, informally but more widely, lunisolar calendars. Typically, both types of calendar begin with a new moon but, whilst a lunar calendar year has a fixed number (usually twelve) of lunar months, lunisolar calendars have a variable number of lunar months, resetting the count periodically to resynchronise with the solar year. The event is celebrated by numerous cultures in various ways at diverse dates. The determination of the first day of a new lunar or lunisolar year varies by culture..</p>
+            </div>
+        </article>
+
+        <article id="movie">
+            <h2>New Family Adventure "Påskharen" Hops Into Theaters This Spring</h2>
+            <div class="image-container">
+                <img src="images\image.png">
+                <p>A brand new family movie is set to capture hearts this Easter season. "Påskharen", directed by acclaimed filmmaker Lina Sjöberg, promises a magical journey full of laughter, adventure, and the spirit of tradition. The movie will premiere in theaters across Sweden and selected international markets starting next week.</p>
+            </div>
+        </article>
+    </main>
 
     <script src="script.js" defer></script>
 </body>
-
-</html>

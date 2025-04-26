@@ -3,19 +3,22 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; /* Tungläst typsnitt */
+  font-family: Changa, sans-serif;
 }
 
 /* Ställer in bakgrundsfärg, textfärg och textstil för hela sidan */
 body {
-  background: #6c6c6c;
+  background: #d4d4d4;
   color: #f5f5dc;
   font-size: 30px;
   text-align: left;
   letter-spacing: 5px;
   word-spacing: 15px;
   line-height: 1.2em;
-  text-shadow: 5px 5px 10px black;
+  display: flex;
+  flex-direction: column; /* Ser till att navbar och main-content är vertikalt staplade */
+  margin: 0;
+  padding: 0;
 }
 
 /* Tar bort understrykning på länkar och ändrar färg */
@@ -24,183 +27,193 @@ a {
   text-decoration: none;
 }
 
-/* Stilar för en knapp-liknande div, men "not-allowed" cursor gör att den ser inaktiv ut */
-.button {
-  background-color: magenta;
-  color: cyan;
-  font-size: 50px;
-  padding: 20px;
-  border: 5px dashed black;
-  cursor: not-allowed;
-  text-transform: uppercase;
-}
-
-/* Nästan osynlig text, spegelvänd */
-.hidden-text {
-  display: block;
-  opacity: 0.1;
-  font-size: 50px;
-  transform: rotate(180deg);
-}
-
-/* En behållare med mittjusterad text och en blå transparent bakgrund */
-.container {
-  width: 100%;
-  margin: auto;
-  border: 10px solid pink;
-  background-color: rgba(0, 0, 255, 0.2);
-  text-align: center;
-}
-
-/* Artikel med prickad orange linje och en radial gradient som bakgrund */
-.article {
-  border-bottom: 10px dotted orange;
-  margin-bottom: 50px;
-  padding-bottom: 50px;
-  background: radial-gradient(circle, black, transparent);
-}
-
-/* Rubrik med stor text och mörkröd färg, justerad till höger */
-.headline {
-  font-size: 80px;
-  font-weight: lighter;
-  color: #8d0801;
-  text-align: right;
-  margin: 50px;
-  padding: 20px;
-}
-
 /* Navigeringsmeny med mörk bakgrund och jämnt fördelade element */
 .navigation {
-  background-color: #3b3b3b;
-  padding: 30px;
+  background-color: #2E3559;
   display: flex;
   justify-content: space-between;
-  font-size: 40px;
+  padding-top: 30px;
+  padding-bottom: 20px; 
+  padding-left: 5%; 
+  padding-right: 5%; 
   font-weight: bold;
-}
-
-/* Navigeringslänkar */
-.navigation .nav-item a {
-  color: #ffffff;
-  padding: 10px;
-  text-decoration: none;
-}
-
-/* Bakgrundsfärg vid hover på navigationslänkar */
-.navigation .nav-item:hover a {
-  background-color: #acacac40;
-}
-
-/* Bilderna placeras i en rad, centrerar dem horisontellt och vertikalt och lägger till ett mellanrum mellan bilderna */
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Definierar storleken på bilderna och gör att de täcker det angivna utrymmet utan att bli förvrängda  */
-.image-container img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-}
-
-/* Input-fält i en container med kolumnlayout och flytande positionering */
-.input-container {
-  display: flex;
-  flex-direction: column;
-  float: right;
-  width: 50%;
-  background: #ffffff00; /* Genomskinlig bakgrund */
-}
-
-/* Inputfält med röd text och svart ram */
-.input-container input {
-  font-size: 30px;
-  padding: 20px;
-  text-align: right;
-  border: 5px solid black;
-  background-color: rgb(255, 255, 255);
-  color: red;
-}
-
-/* Knapp med rosa kant, mörkröd bakgrund och roterad */
-.input-container button {
-  border: 10px ridge pink;
-  background-color: darkred;
-  color: white;
-  font-size: 40px;
-  padding: 30px;
-  cursor: crosshair;
-  transform: rotate(-10deg);
-}
-
-/* En knapp med blå bakgrund och vit text */
-.button {
-  display: inline-block;
-  padding: 10px;
-  background-color: blue;
-  color: white;
-  cursor: pointer;
-}
-
-/* En "fake ad" med blinkande bakgrund och fast position längst ner */
-#fake-ad {
   position: fixed;
-  bottom: 0;
-  width: 40%;
-  background: repeating-radial-gradient(circle, cyan, magenta 10%, yellow 20%);
-  text-align: center;
-  padding: 20px;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.input-container {
+  position: relative; /* Needed for absolute positioning the button */
+  display: flex;
+  align-items: center;
+}
+
+.input-container input {
   font-size: 24px;
-  font-weight: bold;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px 60px 15px 20px; 
+  text-align: left;
+  background-color: rgb(231, 231, 231);
+  border-radius: 50px;
+  width: 500px; 
+  margin-top: -15px;
+  margin-right: 200px;
+  height: 45px; /* Justera höjden på sökfältet */
+}
+
+.input-container button {
+  position: absolute;
+  right: 30px; /* adjust depending where you want it */
+  background: none;
+  border: none;
+  cursor: pointer;;
+  margin-top: -15px;
+  margin-right: 200px;
+
+}
+
+.input-container button img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Huvudinnehåll - Artiklar */
+main.articles {
+  background-color: #ffffff;
+  color: #000000;
+  margin-left: 20.5%;
+  margin-right: 0.5%;
+  margin-bottom: 0.5;
+  margin-top: -42.5%; 
+  padding: 40px;
+min-height: 400px; /* Se till att den har en höjd */
+  border: 1px solid #ccc; /* Lägg till en kantlinje för att se dess storlek */
+}
+
+main.articles > article {
+  display: none;
+}
+
+main.articles > article.fish {
+  display: block; /* Visa den första artikeln som standard */
+}
+
+#lunar h2 {
+  padding-bottom: 20px;
+}
+
+#lunar img {
+  width: 1000px;
+  height: auto;
+}
+
+#lunar p {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+  font-size: 24px;
+  padding-right: 300px;
+}
+
+#fish h2 {
+  padding-bottom: 20px;
+  padding-right: 300px;
+}
+
+#fish img {
+  width: 1000px;
+  height: auto;
+}
+
+#fish p {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+  font-size: 24px;
+  padding-right: 300px;
+}
+
+#movie h2 {
+  padding-bottom: 20px;
+  padding-right: 300px;
+}
+
+#movie img {
+  width: 1000px;
+  height: auto;
+}
+
+#movie p {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+  font-size: 24px;
+  padding-right: 300px;
+}
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* Sidopanel (Vänster) */
+.sidebar {
+  width: 20%; /* Bredd på vänster sidopanel */
+  background-color: #ececec;
+  padding: 10px;
+  height: 100vh;
+  position: sticky; /* Sticky sidopanel */
+  top: 0;
+  border-right: 2px solid #ccc; /* Gräns mellan sidopanel och huvudinnehåll */
+}
+
+/* Artiklar i sidopanelen */
+#article-list {
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+  list-style: none;
+  padding: 0;
+margin-top: 100px; 
+  display: flex;
+  flex-direction: column;
+  gap: 5px;;
+}
+
+.article-button {
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.article-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  padding: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, background-color 0.3s;
+  height: 350px; /* Fast höjd för artikelbehållare */
 }
 
-/* Sektion med centrerad layout */
-.top-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.article-container:hover {
+  background-color: rgb(249, 249, 249);
+  transform: translateY(-3px); /* Liten lyft-effekt vid hover */
 }
 
-/* Text med en hover-effekt som drastiskt krymper storleken */
-.btext {
-  font-size: 18px;
-  padding: 10px 15px;
-  margin-top: 10px;
-  font-weight: bold;
-  transition: transform 0.5s ease-in-out, font-size 0.5s ease-in-out,
-    padding 0.5s ease-in-out;
+.title {
+  font-size: 30px;
+  color: #000000;
+  margin-bottom: 10px; /* Utrymme mellan titel och bild */
+  margin-left: 20px; /* Utrymme från vänster */
+  margin-right: 20px; /* Utrymme från höger */
 }
 
-/* På hover minskas texten kraftigt, nästan osynlig */
-.btext:hover {
-  transform: scale(0.1);
-  font-size: 1px;
-  padding: 1px;
-}
-
-/* Bild som roterar mellan -45 och 45 grader */
-.rotating-image {
+.thumbnail {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-width: 400px; /* Så att bilden inte blir för stor */
   object-fit: cover;
-  animation: rotateLeftRight 2s infinite alternate ease-in-out;
 }
 
-/* Nyckelbildning för att rotera bilden åt vänster och höger */
-@keyframes rotateLeftRight {
-  0% {
-    transform: rotate(-45deg);
-  }
-  100% {
-    transform: rotate(45deg);
-  }
-}
