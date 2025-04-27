@@ -97,7 +97,7 @@ main.articles > article.fish {
   display: block; /* Visa den första artikeln som standard */
 }
 
-#lunar h2 {
+#lunar h1 {
   padding-bottom: 20px;
 }
 
@@ -106,7 +106,7 @@ main.articles > article.fish {
   height: auto;
 }
 
-#lunar p {
+#lunar h2 {
   padding-top: 20px;
   padding-bottom: 20px;
   letter-spacing: 1px;
@@ -115,7 +115,7 @@ main.articles > article.fish {
   padding-right: 300px;
 }
 
-#fish h2 {
+#fish h1 {
   padding-bottom: 20px;
   padding-right: 300px;
 }
@@ -125,7 +125,7 @@ main.articles > article.fish {
   height: auto;
 }
 
-#fish p {
+#fish h2 {
   padding-top: 20px;
   padding-bottom: 20px;
   letter-spacing: 1px;
@@ -134,7 +134,7 @@ main.articles > article.fish {
   padding-right: 300px;
 }
 
-#movie h2 {
+#movie h1 {
   padding-bottom: 20px;
   padding-right: 300px;
 }
@@ -144,7 +144,7 @@ main.articles > article.fish {
   height: auto;
 }
 
-#movie p {
+#movie h2 {
   padding-top: 20px;
   padding-bottom: 20px;
   letter-spacing: 1px;
